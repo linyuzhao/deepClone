@@ -1,0 +1,28 @@
+var now = new Date();
+var deadLine = new Date(now.getFullYear(), 11, 31, 23, 59, 59);
+function getTheTimeToDeadLine(now, deadLine){
+  now = now.getTime();
+  deadLine = deadLine.getTime();
+
+  var duration = deadLine - now;
+  duration = Math.floor( duration / 1000 );
+  var s = duration % 60;
+  duration = Math.floor( duration / 60 );
+  var min = duration % 60;
+  duration = Math.floor( duration / 60 );
+  var hr = duration % 24;
+  var d = duration = Math.floor( duration / 24 );
+  return{
+    d: d,
+    hr: hr,
+    min: min,
+    s: s
+  }
+}
+
+setInterval(function(){
+  now = new Date();  
+  var time = getTheTimeToDeadLine(now, deadLine);
+  console.log('离今年结束还有 ' + time.d + ' 天, ' + time.hr 
+    + ' 时, ' + time.min + ' 分, ' + time.s + '秒~');
+} ,1000);
